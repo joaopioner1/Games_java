@@ -71,5 +71,23 @@ public class PalavraAleatoria {
 				}
 			}
 		}
+		if (palavrasAleatorias.equals("machado")) {
+			System.out.print("Eh usado para cortar. \nEh um tipo de ferramenta. \nFoi muito utlizado tambem como arma de guerra."
+			+ "\nInsira a resposta: ");
+			while (chances <= 3) {
+				answer = in.next();
+				if (answer.equals("machado") || answer.equals("Machado")) {
+					System.out.println("Voce acertou!!! A palavra eh: Machado");
+				} else {
+					System.out.print("Voce errou, digite outra palavra: ");
+					chances -= 1;
+					answer = in.nextLine();
+				}
+				if (chances == 0) {
+				System.out.println("Suas tentativas acabaram");
+				break;
+				}
+			}
+		}
 	}
 }
