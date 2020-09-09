@@ -3,17 +3,12 @@ package games_simples;
 import java.util.Random;
 import java.util.Scanner;
 
-package games_simples;
-
-import java.util.Random;
-import java.util.Scanner;
-
 public class PalavraAleatoria {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 
-		String[] palavras = { "computador",  "livro"};//"microfone", "machado", ""};
+		String[] palavras = { "computador",  "livro", "microfone", "machado", ""};
 		Random random = new Random();
 		
 		short chances = 3;
@@ -47,6 +42,24 @@ public class PalavraAleatoria {
 				answer = in.next();
 				if (answer.equals("livro") || answer.equals("Livro")) {
 					System.out.println("Voce acertou!!! A palavra eh: livro");
+				} else {
+					System.out.print("Voce errou, digite outra palavra: ");
+					chances -= 1;
+					answer = in.nextLine();
+				}
+				if (chances == 0) {
+				System.out.println("Suas tentativas acabaram");
+				break;
+				}
+			}
+		}
+		if (palavrasAleatorias.equals("microfone")) {
+			System.out.print("Eh usado para falar. \nVoce pode usar para cantar. \nFoi criado em 1877."
+			+ "\nInsira a resposta: ");
+			while (chances <= 3) {
+				answer = in.next();
+				if (answer.equals("microfone") || answer.equals("Microfone")) {
+					System.out.println("Voce acertou!!! A palavra eh: Microfone");
 				} else {
 					System.out.print("Voce errou, digite outra palavra: ");
 					chances -= 1;
