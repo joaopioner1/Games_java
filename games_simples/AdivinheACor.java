@@ -12,12 +12,12 @@ public class AdivinheACor {
 		
 		System.out.print("Insira sua cor favorita e eu tentarei adivinhar(apenas cores com uma palavra): ");
 		String input = in.next();
-		char answer = in.next().charAt(0);
+		char answer;
 		
-		while () {
+		while (answer != 's') {
 			String randomColor = colors[random.nextInt(colors.length)];
 			System.out.print("Sua cor eh " + randomColor + " (Digite s ou n)? ");
-			
+			answer = in.next().charAt(0);
 		}
 		
 		in.close();
