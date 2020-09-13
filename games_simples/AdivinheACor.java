@@ -19,7 +19,7 @@ public class AdivinheACor {
 			System.out.print("Sua cor eh " + randomColor + " (Digite s ou n)? ");
 			answer = in.next().charAt(0);
 		}
-		System.out.println("");
+		System.out.println("Acertei sua cor");
 		
 		in.close();
 	}
