@@ -9,7 +9,7 @@ public class AdivinheACor {
 		Scanner in = new Scanner(System.in);
 		Random random = new Random();
 		String[] colors = {"Vermelho", "Amarelo", "Verde", "Laranja", "Roxo", "Rosa", "Vinho",
-		"Azul", "Branco", "Preto", "Marrom"}; 
+		"Azul", "Branco", "Preto", "Marrom", "Cinza"}; 
 		String randomColor = colors[random.nextInt(colors.length)];
 		
 		System.out.print("Insira sua cor favorita e eu tentarei adivinhar(apenas cores com uma palavra): ");
