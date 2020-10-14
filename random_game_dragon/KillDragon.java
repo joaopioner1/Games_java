@@ -7,7 +7,7 @@ public class KillDragon {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-
+		//vetores
 		String[] cartasAleatorias = {"guerreiro 20", "inteligente 24", "sanguinario 27", "mortal 32", "traicoeiro 23", "bandido 25", "selvagem 19", "sorteOuAzar X"};
 		Random random = new Random();
 		String cartas = cartasAleatorias[random.nextInt(cartasAleatorias.length)];
@@ -33,7 +33,7 @@ public class KillDragon {
 			cartas.equals("bandido 25")     ||
 			cartas.equals("selvagem 19")    ||
 			cartas.equals("sorteOuAzar X")) {
-			System.out.println("Sua carta inicial é: " + cartas + " de dano.");
+			System.out.println("Sua carta inicial Ã©: " + cartas + " de dano.");
 			
 			if (cartas.equals("guerreiro 20")) {
 				dragonLife -= 20;
