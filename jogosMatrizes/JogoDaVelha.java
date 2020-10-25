@@ -131,7 +131,7 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 				}
 			
 			for (int col = 0; col < matriz.length; col++) {
-				if (matriz[0][1] == matriz[1][col] && matriz[0][col] == matriz[2][col] && matriz[0][col] != 0) {
+				if (matriz[0][col] == matriz[1][col] && matriz[0][col] == matriz[2][col] && matriz[0][col] != 0) {
 					System.out.println("Houve ganhador");
 					ganhador = matriz[0][col];
 					break;
@@ -141,13 +141,11 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 			if (matriz[0][0] == matriz[1][1] && matriz[0][0] == matriz[2][2] && matriz[0][0] != 0) {
 				System.out.println("Houve ganhador");
 				ganhador = matriz[0][0];
-
 			}
 			
 			if (matriz[0][2] == matriz[1][1] && matriz[0][2] == matriz[2][0] && matriz[0][2] != 0) {
 				System.out.println("Houve ganhador");
 				ganhador = matriz[0][0];
-
 			}
 		}
 
