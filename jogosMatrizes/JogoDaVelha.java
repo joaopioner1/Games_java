@@ -17,6 +17,7 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 	
 		int matriz[][];
 		int jogador, ganhador = 0;
+		boolean jogarNovamente = false;
 		
 		public JogoDaVelha() {
 			
@@ -40,6 +41,17 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 				}
 				System.out.println();
 			}
+			
+			if (jogarNovamente) {
+				int jogarNov = new JOptionPane().showConfirmDialog(this, "Deseja jogar novamente?");
+				
+				if (jogarNov == JOptionPane.OK_OPTION) {
+					jogarNovamente = false;
+					reiniciarJogo();
+				} else {
+					System.exit(jogarNov);
+				}
+			}
 	
 			g.setFont(minhaFont);
 			
@@ -60,6 +72,7 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 						g.drawString("o", 75 + col * 200, 110 + lin * 200);
 					} else if (matriz[lin][col] == 2) {
 					g.drawString("x", 75 + col * 200, 110 + lin * 200); // "" + transformou em String
+					
 					}
 				}
 			}
@@ -69,6 +82,9 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 				g.setFont(smallFont);
 				g.drawString("O jogador " + ganhador + " venceu", 100, 170);
 				
+				jogarNovamente = true;
+				
+				repaint();
 			}
 	}
 
@@ -91,7 +107,19 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 			
 			repaint();
 		}
+		
+		
+		private void reiniciarJogo() {
+			
+			for (int lin = 0; lin < matriz.length; lin++) {
+				for (int col = 0; col < matriz.length; col++) {
+					matriz[lin][col] = 0;
+					ganhador = 0;
+				}
+			}
+		}
 
+		
 		private void verificaGanhador() {
 			
 			for (int lin = 0; lin < matriz.length; lin++) {
@@ -105,7 +133,7 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 			for (int col = 0; col < matriz.length; col++) {
 				if (matriz[0][1] == matriz[1][col] && matriz[0][col] == matriz[2][col] && matriz[0][col] != 0) {
 					System.out.println("Houve ganhador");
-					ganhador = matriz[col][0];
+					ganhador = matriz[0][col];
 					break;
 				}
 			}
