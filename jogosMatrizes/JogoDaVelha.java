@@ -12,17 +12,27 @@ import javax.swing.JPanel;
 public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes do mouse
 
 		//Autor: Joao Vitor Souza Pioner Data: 22/10/2020 7:36 h
+		// Ultima atualizacao: 21:37 h
 		Font minhaFont = new Font("Consolas", Font.BOLD, 80);
 		Font smallFont = new Font("Consolas", Font.BOLD, 40);
-	
+		Font verySmallFont = new Font("Consolas", Font.BOLD, 15);
+
+		
 		int matriz[][];
 		int jogador, ganhador = 0;
 		boolean jogarNovamente = false;
+		int v1, v2, empates;
+		
+		Color cor1;
 		
 		public JogoDaVelha() {
 			
 			matriz = new int[3][3];
 			jogador = 1;
+			cor1 = new Color(0, 160, 0);
+			v1 = 0;
+			v2 = 0;
+			empates = 0;
 			
 			for (int lin = 0; lin < matriz.length; lin++) {
 				for (int col = 0; col < matriz.length; col++) { //col = coluna
@@ -43,19 +53,19 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 			}
 			
 			if (jogarNovamente) {
-				int jogarNov = new JOptionPane().showConfirmDialog(this, "Deseja jogar novamente?");
+				int jogarNov = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?");
 				
 				if (jogarNov == JOptionPane.OK_OPTION) {
 					jogarNovamente = false;
 					reiniciarJogo();
 				} else {
-					System.exit(jogarNov);
+					System.exit(1);
 				}
 			}
 	
 			g.setFont(minhaFont);
 			
-			g.setColor(Color.LIGHT_GRAY);
+			g.setColor(Color.white);
 			g.fillRect(0, 0, 600, 600);
 			
 			g.setColor(Color.black); //linhas
@@ -69,23 +79,49 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 				for (int col = 0; col < matriz.length; col++) { //col = coluna
 					
 					if (matriz[lin][col] == 1) {
-						g.drawString("o", 75 + col * 200, 110 + lin * 200);
+						g.setColor(cor1);
+						g.drawString("o", 75 + col * 200, 125 + lin * 200);
 					} else if (matriz[lin][col] == 2) {
-					g.drawString("x", 75 + col * 200, 110 + lin * 200); // "" + transformou em String
+						g.setColor(Color.RED);
+						g.drawString("x", 75 + col * 200, 125 + lin * 200); // "" + transformou em String
 					
 					}
 				}
 			}
 			
 			if (ganhador != 0) {
-				g.setColor(Color.blue);
+				
 				g.setFont(smallFont);
+				if (ganhador == 3) {
+					g.setColor(Color.blue);
+					g.drawString("O jogo empatou", 150, 150);
+					
+					
+				} else {
+				
+					if (ganhador == 1) 
+						g.setColor(cor1);
+					else if (ganhador == 2) 
+						g.setColor(Color.red);
+				
+				
 				g.drawString("O jogador " + ganhador + " venceu", 100, 170);
-				
+				 
+				}
 				jogarNovamente = true;
-				
 				repaint();
+			
 			}
+			g.setFont(verySmallFont);
+			g.setColor(cor1);
+			g.drawString("Vitórias: " + v1, 20, 20);
+			
+			g.setColor(Color.red);
+			g.drawString("Vitórias: " + v2, 480, 20);
+			
+			g.setColor(Color.blue);
+			g.drawString("Empates: " + empates, 260, 20);
+			
 	}
 
 		@Override
@@ -145,31 +181,48 @@ public class JogoDaVelha extends JPanel implements MouseListener{ //Ler as acoes
 			
 			if (matriz[0][2] == matriz[1][1] && matriz[0][2] == matriz[2][0] && matriz[0][2] != 0) {
 				System.out.println("Houve ganhador");
-				ganhador = matriz[0][0];
+				ganhador = matriz[0][2];
+			}
+			
+			if (ganhador == 1) {
+				v1++;
+			} else if (ganhador == 2) {
+				v2++;
+			} else {
+				
+				boolean cheia = true;
+				for (int lin = 0; lin < 3; lin++) {
+					for (int col = 0; col < 3; col++) {
+						if (matriz[lin][col] == 0) {
+							cheia = false;
+						}
+					}
+					
+					if (cheia) {
+						ganhador = 3;
+						empates++;
+					}
+				}
 			}
 		}
-
+		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}   
 }
